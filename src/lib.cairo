@@ -101,4 +101,6 @@ mod tests {
             },
         }
     }
+    // Running this code would print it worked.
+    // unfortunately nothing was printed ooo
 }
