@@ -1,32 +1,17 @@
-use debug::PrintTrait;
-
-fn plus_one(x: Option<u8>) -> Option<u8> {
-    match x {
-        Option::Some(val) => Option::Some(val + 1),
-        Option::None(_) => Option::None,
-    }
-}
-
-fn main() {
-    let five: Option<u8> = Option::Some(5);
-    let six: Option<u8> = plus_one(five);
-    six.unwrap().print();
-    let none = plus_one(Option::None);
-    none.unwrap().print();
-}
-
-// fn main() {
-
-    // let msg: Message = Message::Quit;
-    // msg.process();
-    // let ech: Message = Message::Echo(16);
-    // ech.process();
-    // let mve: Message = Message::Move((11, 9));
-    // mve.process();
-// }
-
+//////////////////////////////////////////
+//////        code OKAY         //////////
+//////       ENUMS             ///////////
+//////////////////////////////////////////
+// use debug::PrintTrait;
 
 // #[derive(Drop)]
+// enum Direction {
+//     North,
+//     East,
+//     South,
+//     West,
+// }
+
 // enum Message {
 //     Quit,
 //     Echo: felt252,
@@ -35,16 +20,65 @@ fn main() {
 
 // trait Processing {
 //     fn process(self: Message);
+//     fn moving(self: Direction);
 // }
 
 // impl ProcessingImpl of Processing {
 //     fn process(self: Message) {
 //         match self {
-//             Message::Quit => { 'quitting'.print(); },
+//             Message::Quit =>  'quitting'.print(),
 //             Message::Echo(value) => { value.print(); },
 //             Message::Move((x, y)) => { 'moving'.print(); },
 //         }
 //     }
+
+//     fn moving(self: Direction) {
+//         match self {
+//             Direction::North => 1.print(),
+//             Direction::East => 2.print(),
+//             Direction::South => 3.print(),
+//             Direction::West => 4.print(),
+//         }
+//     }
+// }
+
+// fn running_abt(direction: Direction) -> felt252{
+//         match direction {
+//             Direction::North => 1,
+//             Direction::East => 2,
+//             Direction::South => 3,
+//             Direction::West => 4,
+//         }
+//     }   
+
+// fn main() {
+//     // TRYING IT OUT (using impl)
+//     let dir: Direction = Direction::North;
+//     dir.moving();
+//     // ...using "impl"
+//     let msg: Message = Message::Quit;
+//     msg.process();
+//     // ANOTHER METHOD [no impl]
+//     let dir = running_abt(Direction::South);
+//     dir.print();
+//     // ANOTHER STYLE [no impl]
+//     running_abt(Direction::West).print();
+
+// }
+/////////////CODE END////////////////
+/////////////////////////////////////
+
+
+
+//////////////////////////////////////////
+//////    NO expected output    //////////
+////////     OPTION ENUM        //////////
+//////////////////////////////////////////
+
+// #[derive(Drop)]
+// enum Option<T> {
+//     Some: T,
+//     None: (),
 // }
 
 // fn find_value_recursive(arr: @Array<felt252>, value: felt252, index: usize) -> Option<usize> {
@@ -96,27 +130,107 @@ fn main() {
 //         let result_i = find_value_iterative(@my_array, value_to_find);
 
 //         match result {
-//             Option::Some(index) => {
+//             enums::Option::Some(index) => {
 //                 if index == 1 {
 //                     'it worked'.print();
 //                 }
 //             },
-//             Option::None => {
+//             enums::Option::None => {
 //                 'not found'.print();
 //             },
 //         }
 //         match result_i {
-//             Option::Some(index) => {
+//             enums::Option::Some(index) => {
 //                 if index == 1 {
 //                     'it worked'.print();
 //                 }
 //             },
-//             Option::None => {
+//             enums::Option::None => {
 //                 'not found'.print();
 //             },
 //         }
 //     }
-//     // Running this code would print it worked.
-//     // unfortunately nothing was printed ooo
 // }
+
+// fn main() {}
+/////////////CODE END////////////////
+/////////////////////////////////////
+
+
+
+//////////////////////////////////////////
+//////        code OKAY         //////////
+//////match control flow for enums////////
+//////////////////////////////////////////
+// use debug::PrintTrait;
+
+// #[derive(Drop)]
+// enum UsState {
+//     Alabama,
+//     Alaska,
+// }
+
+// #[derive(Drop)]
+// enum Coin {
+//     Penny,
+//     Nickel,
+//     Dime,
+//     Quarter: UsState,
+// }
+
+// impl UsStatePrintImpl of PrintTrait<UsState> {
+//     fn print(self: UsState) {
+//         match self {
+//             UsState::Alabama => ('Alabama').print(),
+//             UsState::Alaska => ('Alaska').print(),
+//         }
+//     }
+// }
+
+// fn value_in_cents(coin: Coin) -> felt252 {
+//     match coin {
+//          Coin::Penny(_) => {
+//             ('Lucky penny!').print();
+//             1
+//         },
+//         Coin::Nickel => 5,
+//         Coin::Dime => 10,
+//         Coin::Quarter(state) => {
+//             state.print();
+//             25
+//         },
+//     }
+// }
+
+// fn main() {
+//     value_in_cents(Coin::Penny).print();
+//     let alska = value_in_cents(Coin::Quarter(UsState::Alaska(())));
+//     alska.print()
+// }
+/////////////CODE END////////////////
+/////////////////////////////////////
+
+
+
+//////////////////////////////////////////
+//////        code OKAY         //////////
+//////           OPTION           ////////
+//////////////////////////////////////////
+use debug::PrintTrait;
+fn plus_one(x: Option<u8>) -> Option<u8> {
+    match x {
+        Option::Some(val) => Option::Some(val + 1),
+        Option::None(_) => Option::None,
+    }
+}
+
+fn main() {
+    let five: Option<u8> = Option::Some(5);
+    let six: Option<u8> = plus_one(five);
+    six.unwrap().print();
+    let none = plus_one(Option::None);
+    none.unwrap().print();
+}
+/////////////CODE END////////////////
+/////////////////////////////////////
 
